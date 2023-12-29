@@ -19,7 +19,7 @@ import { MessageService } from 'primeng/api';
     ComponentModule,
     CommonModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
    

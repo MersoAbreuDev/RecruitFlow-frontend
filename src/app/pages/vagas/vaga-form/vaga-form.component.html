@@ -1,22 +1,25 @@
 <div class="new-user">
     <div class="content">
         <div class="content-title">
-            <h2>Cadastro de usuário</h2>
+            <h2>Cadastrar Vaga</h2>
         </div>
         <div class="content-form">
             <form [formGroup]="form" (ngSubmit)="register()">
                 <div class="input-group">
-                    <label for="name">Nome</label>
-                    <input pInputText id="name" formControlName="nome" class="input-style"/>
+                    <label for="titulo">Titulo</label>
+                    <input pInputText id="titulo" formControlName="titulo" class="input-style"/>
                 </div>
                 <div class="input-group">
-                    <label for="name">E-mail</label>
-                    <input pInputText id="name" formControlName="email" class="input-style"/>
+                    <label for="descricao">Descrição</label>
+                    <textarea [autoResize]="true"  [style]="{'width':'100%'}"  id="descricao" rows="5" cols="30" pInputTextarea formControlName="descricao"></textarea>
+                   
                 </div>
                 <div class="input-group">
-                    <label for="password">Senha</label>
-                    <p-password  id="password" formControlName="senha"styleClass="input-password" [feedback]="false" [inputStyle]="{'width':'initial', 'min-width':'386px', 'height': '38px'}"></p-password>
+                    <label for="status">Status</label>
+                    <p-dropdown formControlName="status"  [style]="{'width':'100%'}" [options]="status" [(ngModel)]="selectedStatus" optionLabel="status" [showClear]="true" placeholder="Status">
+                    </p-dropdown>
                 </div>
+                
                 <div class="input-button">
                     <div class="button-left">
                         <p-button (onClick)="limparFormulario()" label="Cancelar" severity="danger"></p-button>
@@ -29,4 +32,3 @@
         </div>
     </div>
 </div>
-

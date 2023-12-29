@@ -52,8 +52,9 @@ export class LoginComponent implements OnInit{
       this.loginService.login(this.createPayloadLogin())
       .subscribe((res:any)=>{
         let {token} = res;
-        this.navigateURL('home');
+        this.navigateURL('vaga/vaga-list');
       })
+      
     }
   }
 
