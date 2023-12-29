@@ -1,0 +1,21 @@
+<div class="vacancie ">
+    <div class="list-vacancie container" *ngFor="let vaga of vagas">
+        <div class="item">
+            <div class="item-title">
+                <h2>{{vaga.titulo}}<i *ngIf=" isAuthorized()" (click)="modal()" style="float: right;cursor: pointer;" class="pi pi-pencil"></i></h2>
+                
+            </div>
+            <div class="item-description">
+                <h3>Especificações</h3>
+                <p>
+                    - {{vaga.descricao}} <br>
+                </p>
+            </div>
+            <div class="item-status">
+                <i class="pi pi-check"></i>
+                <p>{{vaga.status}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+

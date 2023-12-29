@@ -13,6 +13,8 @@ export class LoginService {
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
   returnUrl:string="";
+  private roleSubject = new BehaviorSubject<string | null>('');
+  role$: Observable<string | null> = this.roleSubject.asObservable();
   private isAuthenticated = new BehaviorSubject<boolean>(false)
   mostrarMenuEmitter = new EventEmitter<boolean>();
 
@@ -22,11 +24,12 @@ export class LoginService {
                ) {
         this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')!));
         this.currentUser = this.currentUserSubject.asObservable();
+        
     }
 
     public get currentUserValue(): any {
         return this.currentUserSubject.getValue();
-  }
+    }
 
   get isAuthenticated$() {
     if(localStorage.getItem('currentUser')!=null){
@@ -41,6 +44,7 @@ export class LoginService {
         localStorage.setItem('currentUser', JSON.stringify(data));
         this.currentUserSubject.next(data);
         this.isAuthenticated.next(true);
+        this.setRole(data.role);
         this.utilsService.showSuccess("Login realizado com sucesso!"); 
         return data;
       }),
@@ -74,11 +78,20 @@ export class LoginService {
   } 
 
    logout() {
-      localStorage.removeItem('currentUser');
-      localStorage.removeItem('username');
-      this.isAuthenticated.next(false);
-      this.router.navigate(['login']);
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('username');
+    this.isAuthenticated.next(false);
+    this.setRole(null); 
+    this.router.navigate(['login']);
     }
+
+    buscarTodos(data: any): Observable<any> {
+      return this.http.get(`${SERVER_URI}api/v1/auth/buscar-todos`, data).pipe(map((data: any) => {
+        this.currentUserSubject.next(data);
+        return data;
+      }));;
+    }
+  
 
     setUserName(login:string): void{
         localStorage.setItem('username', JSON.stringify(login));
@@ -90,5 +103,13 @@ export class LoginService {
 
     esqueciMinhaSenha(login:string):Observable<any>{
         return this.http.post(`${SERVER_URI}usuarios/forgot_password`, login)
+    }
+
+    setRole(role: string | null) {
+      this.roleSubject.next(role);
+    }
+
+    getRole(): string | null {
+      return this.roleSubject.getValue();
     }
 }

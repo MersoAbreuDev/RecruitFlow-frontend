@@ -14,90 +14,106 @@ export class SidebarComponent{
   sidebarVisible: boolean = false;
   items!: MenuItem[];
   isLoginPage!: boolean;
+  role: string | null = null;
 
-  constructor(private router: Router,
-) {
-    this.router.events.subscribe(event => {
+  constructor(private router: Router, private loginService: LoginService) {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        if(event.url == '/login' || event.url == '/signup' ){
+        if (event.url == '/login' || event.url == '/signup') {
           this.isLoginPage = false;
-        }else{
+        } else {
           this.isLoginPage = true;
         }
       }
     });
   }
 
-  ngOnInit(){
-      this.items = [
-        {
-            label: 'Cadastros',
-            icon: 'pi pi-fw pi-file',
+  ngOnInit() {
+    this.loginService.role$.subscribe((role) => {
+      this.role = role;
+      this.updateSidebarItems();
+    });
+
+    this.updateSidebarItems();
+  }
+
+  updateSidebarItems() {
+    this.items = [
+      {
+        label: 'Cadastros',
+        icon: 'pi pi-fw pi-file',
+        visible: this.isAuthorized(),
+        items: [
+          {
+            label: 'Usuario',
+            icon: 'pi pi-fw pi-plus',
             items: [
-                {
-                    label: 'Usuario',
-                    icon: 'pi pi-fw pi-plus',
-                    items: [
-                        {
-                            label: 'Cadastrar',
-                            icon: 'pi pi-fw pi-bookmark',
-                            command: () => {
-                              this.router.navigateByUrl("/user")
-                          }
-                        },
-                        {
-                            label: 'Consultar',
-                            icon: 'pi pi-fw pi-video',
-                       
-                        }
-                    ]
+              {
+                label: 'Cadastrar',
+                icon: 'pi pi-fw pi-user-plus',
+                command: () => {
+                  this.router.navigateByUrl('/user');
                 },
-                {
-                  label: 'Vagas',
-                  icon: 'pi pi-fw pi-plus',
-                  items: [
-                      {
-                          label: 'Cadastrar',
-                          icon: 'pi pi-fw pi-bookmark',
-                      
-                      },
-                      {
-                          label: 'Consultar',
-                          icon: 'pi pi-fw pi-video',
-                     
-                      }
-                  ]
               },
               {
-                label: 'Avaliação Candidato',
-                icon: 'pi pi-fw pi-plus',
-                items: [
-                    {
-                        label: 'Avaliar',
-                        icon: 'pi pi-fw pi-bookmark',
-                      
-                    },
-                    {
-                        label: 'Consultar',
-                        icon: 'pi pi-fw pi-video',
-                     
-                    }
-                ]
-            }
-          ]
+                label: 'Consultar',
+                icon: 'pi pi-fw pi-list',
+                command: () => {
+                  this.router.navigateByUrl('/user/user-list');
+                },
+              },
+            ],
+          },
+          {
+            label: 'Vagas',
+            icon: 'pi pi-fw pi-plus',
+            items: [
+              {
+                label: 'Cadastrar',
+                icon: 'pi pi-fw pi-user-plus',
+                command: () => {
+                  this.router.navigateByUrl('/vaga');
+                },
+              },
+              {
+                label: 'Consultar',
+                icon: 'pi pi-fw pi-list',
+                command: () => {
+                  this.router.navigateByUrl('/vaga/vaga-list');
+                },
+              },
+            ],
+          },
+          {
+            label: 'Avaliação Candidato',
+            icon: 'pi pi-fw pi-plus',
+            items: [
+              {
+                label: 'Avaliar',
+                icon: 'pi pi-fw pi-user-plus',
+              },
+              {
+                label: 'Consultar',
+                icon: 'pi pi-fw pi-list',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        label: 'Sair',
+        icon: 'pi pi-fw pi-power-off',
+        command: () => {
+          localStorage.clear();
+          setTimeout(() => {
+            this.router.navigate(['login']);
+          }, 1000);
         },
-        {
-            label: 'Sair',
-            icon: 'pi-power-off',
-            command: () => {
-              localStorage.clear();
-              setTimeout(()=>{
-              this.router.navigate(['login']);
-              },1000)
-          }
-        }
-      ];
+      },
+    ];
   }
- 
 
+  isAuthorized(): boolean {
+    return this.role !== undefined && this.role !== null && this.role === 'ADMIN';
+  }
 }

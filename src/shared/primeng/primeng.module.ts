@@ -8,6 +8,12 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { SidebarModule } from 'primeng/sidebar';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { TableModule } from 'primeng/table';
+import { DropdownModule } from 'primeng/dropdown';
+import { SharedModule } from "primeng/api";
+import { InputTextModule } from "primeng/inputtext";
+import { InputTextareaModule } from 'primeng/inputtextarea';
+
 
 @NgModule({
     declarations: [],
@@ -19,8 +25,13 @@ import { PanelMenuModule } from 'primeng/panelmenu';
         InputGroupModule,
         InputGroupAddonModule,
         SidebarModule,
-        PanelMenuModule
-
+        PanelMenuModule,
+        TableModule,
+        SharedModule,
+        InputTextModule,
+        DropdownModule,
+        InputTextareaModule
+  
     ],
     exports:[
         DividerModule,
@@ -30,7 +41,12 @@ import { PanelMenuModule } from 'primeng/panelmenu';
         InputGroupModule,
         InputGroupAddonModule,
         SidebarModule,
-        PanelMenuModule
+        PanelMenuModule,
+        TableModule,
+        SharedModule,
+        InputTextModule,
+        DropdownModule,
+        InputTextareaModule
     ]
   })
   export class PrimengModule { }

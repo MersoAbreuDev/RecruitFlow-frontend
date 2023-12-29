@@ -1,9 +1,9 @@
 <p-sidebar [(visible)]="sidebarVisible">
     <div class="logo">
-        <img src="../../../assets/icon/logo-recruit-flow.png">
+        <img routerLink="home" src="../../../assets/icon/logo-recruit-flow.png">
     </div>
     <div class="card flex justify-content-center">
         <p-panelMenu [model]="items"></p-panelMenu>
     </div>
 </p-sidebar>
-<p-button *ngIf="this.isLoginPage" (click)="sidebarVisible = true" icon="pi pi-bars"></p-button>
+<p-button [style]="{'margin-left': '20px', 'margin-top':'20px'}" *ngIf="this.isLoginPage" (click)="sidebarVisible = true" icon="pi pi-bars"></p-button>

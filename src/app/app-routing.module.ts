@@ -26,6 +26,11 @@ const routes: Routes = [
         path: 'user',
         loadChildren: () => import('./pages/user/user.module').then( m => m.UserModule),
         canActivate:[AuthGuard]
+      },
+      {
+        path: 'vaga',
+        loadChildren: () => import('./pages/vagas/vaga.module').then( m => m.VagaModule),
+        canActivate:[AuthGuard]
       }
 ];
 
