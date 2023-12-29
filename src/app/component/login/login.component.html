@@ -1,31 +1,28 @@
-
-<div class="grid" >
-    <div class="col-12" style="margin-top: 12rem;">
-        <div class="card">
-            <div class="grid" >
-                <div class="col-5 flex align-items-center justify-content-center" >
-                    <div class="p-fluid" >
-                        <form [formGroup]="form" (ngSubmit)="login()">
-                            <span class="p-float-label">
-                                <input  formControlName="login" id="float-input" type="text" pInputText> 
-                                <label for="float-input">Digite seu e-mail</label>
-                            </span>
-                            <span style="margin-top: 25px;" class="p-float-label">
-                                <p-password  formControlName="password" [toggleMask]="true" id="float-input" type="p-password"></p-password>
-                                <label for="float-input">Digite sua senha</label>
-                            </span>
-                            <button style="margin-top: 25px; width: 100%;" pButton type="submit" label="Entrar" class="p-button-success"></button>
-                           </form>
-                    </div>
-                </div>
-                <div class="col-2">
-                  
-                </div>
-                <div class="col-5 align-items-center justify-content-center">
-                    <img class="icon" src="" alt="">
-                </div>
+<div class="main">
+    <div class="login">
+        <div class="login__container">
+            <div class="logo">
+                <img src="../../../assets/icon/logo-recruit-flow.png">
             </div>
+          <form [formGroup]="form" (ngSubmit)="login()" class="login__form">
+            <div class="form-group">
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-envelope"></i>
+                    </p-inputGroupAddon>
+                    <input formControlName="email" pInputText placeholder="Email" class="input-login" />
+                </p-inputGroup>
+            </div>
+            <div class="form-group">
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-lock"></i>
+                    </p-inputGroupAddon>
+                    <input formControlName="senha" pInputText placeholder="Senha" class="input-login" />
+                </p-inputGroup>
+            </div>
+            <button type="submit" class="login__submit">Login</button>
+          </form>
         </div>
-    </div>
-
+    </div>    
 </div>

@@ -6,14 +6,14 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
-    declarations: [LoginComponent],
+    declarations: [],
     imports: [
         PrimengModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
     ],
     exports:[
-        LoginComponent
+       
     ]
   })
   export class ComponentModule { }
