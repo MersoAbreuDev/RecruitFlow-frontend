@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuard } from './guards/auth.guard';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,4 +12,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 })
 export class AppComponent {
   title = 'recruitflow';
+  constructor(private authGuard:AuthGuard,
+    private router: Router ){}
 }

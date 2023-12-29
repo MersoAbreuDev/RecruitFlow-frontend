@@ -6,6 +6,8 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { PasswordModule } from 'primeng/password';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { SidebarModule } from 'primeng/sidebar';
+import { PanelMenuModule } from 'primeng/panelmenu';
 
 @NgModule({
     declarations: [],
@@ -15,7 +17,9 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
         StyleClassModule,
         PasswordModule,
         InputGroupModule,
-        InputGroupAddonModule
+        InputGroupAddonModule,
+        SidebarModule,
+        PanelMenuModule
 
     ],
     exports:[
@@ -24,7 +28,9 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
         StyleClassModule,
         PasswordModule,
         InputGroupModule,
-        InputGroupAddonModule
+        InputGroupAddonModule,
+        SidebarModule,
+        PanelMenuModule
     ]
   })
   export class PrimengModule { }

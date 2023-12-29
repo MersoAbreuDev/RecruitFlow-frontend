@@ -4,13 +4,21 @@
             <div class="logo">
                 <img src="../../../assets/icon/logo-recruit-flow.png">
             </div>
-          <form [formGroup]="form" (ngSubmit)="login()" class="login__form">
+          <form [formGroup]="form" (ngSubmit)="register()" class="login__form">
+            <div class="form-group">
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-user"></i>
+                    </p-inputGroupAddon>
+                    <input formControlName="nome"   pInputText placeholder="Nome" class="input-login" />
+                </p-inputGroup>
+            </div>
             <div class="form-group">
                 <p-inputGroup>
                     <p-inputGroupAddon>
                         <i class="pi pi-envelope"></i>
                     </p-inputGroupAddon>
-                    <input formControlName="email" pInputText placeholder="Email" class="input-login" />
+                    <input formControlName="email"  pInputText placeholder="Email" class="input-login" />
                 </p-inputGroup>
             </div>
             <div class="form-group">
@@ -24,7 +32,6 @@
             </div>
             <button type="submit" class="login__submit">Login</button>
           </form>
-          <a routerLink="/signup">Ainda não possuo registro!</a>
         </div>
     </div>    
 </div>

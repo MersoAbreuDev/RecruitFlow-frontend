@@ -1,0 +1,104 @@
+.main {
+    background-color: #f1f1f1;
+    --button-linear: linear-gradient(120deg, #F75590, #00C2CB, #F75590);
+    --button-disabled: #acacac;
+    --button-success: rgb(18, 151, 107);
+    --white: #fff;
+    --black: #303030;
+    --gray: #929292;
+    --light-gray: #cfcfcf;
+    --border-height: 1px;
+}
+
+
+.login {
+    height: 100vh;
+    background: var(--input-linear);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .logo{
+    margin-bottom: 10px;
+  }
+
+  .logo img{
+    max-width: 100%;
+    height: auto;
+    width: 200px;
+  }
+
+  .input-login{
+    border-top: 1px solid #d1d5db;
+    border-right: 1px solid #d1d5db;
+    border-left: 1px solid #d1d5db;
+    border-bottom: 1px solid #d1d5db;
+    padding: 8px;
+    height: 48px;
+    width: 100%;
+  }
+
+  .input-password .p-password .p-inputtext{
+    width: initial !important;
+    width: 274px !important;
+  }
+
+
+  .input-login:focus-visible{
+    border-top: 1px solid #d1d5db;
+    border-right: 1px solid #d1d5db;
+    border-left: 1px solid #d1d5db;
+    border-bottom: 1px solid #d1d5db;
+    outline: none;
+  }
+
+  .form-group{
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .login__container {
+    max-height: 420px;
+    width: 380px;
+    background-color: var(--white);
+    box-sizing: border-box;
+    padding: 32px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+  }
+
+  
+  .login__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
+  .login__submit {
+    height: 48px;
+    width: 100%;
+    padding-left: 8px;
+    outline: none;
+    position: relative;
+    background: var(--button-linear);
+    background-size: 200%;
+    color: var(--white);
+    font-size: 16px;
+    font-weight: bold;
+    border: unset;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.5s ease;
+  }
+  
+  .login__submit:hover {
+    background-position: right;
+  }
+  
