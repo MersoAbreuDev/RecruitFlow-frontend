@@ -81,17 +81,17 @@ export class PerfilCandidatoFormComponent implements OnInit{
       uf: this.getValueControl(this.form, 'uf'),
       cep: this.getValueControl(this.form, 'cep')
     };
-  
+
     const payload = {
       email: this.getValueControl(this.form, 'email'),
       link: this.getValueControl(this.form, 'link'),
       celular: this.getValueControl(this.form, 'celular'),
       nome: this.getValueControl(this.form, 'nome'),
-      endereco,  
+      endereco,
       imagem: "",
       usuario:this.idUser
     };
-  
+
     return payload;
   }
 
@@ -101,17 +101,25 @@ export class PerfilCandidatoFormComponent implements OnInit{
     const base64String = btoa(new Uint8Array(arrayBuffer).reduce((data, byte) => data + String.fromCharCode(byte), ''));
     return `data:${response.headers.get('content-type')};base64,${base64String}`;
   }
-  
+
+  buscarPorId(id:number){
+    this.perfilCandidatoService.buscarPerfilPorId(id).subscribe((res)=>{
+      this.perfil = res;
+    })
+  }
+
   async register() {
     const imageUrl = this.imagemSelecionada;
-  
+
     try {
       const base64Image = await this.convertImageToBase64(imageUrl);
-  
+
       if (this.isValidForm()) {
+
         const payload = this.createPayloadPerfil();
-        payload.imagem = base64Image; 
-  
+
+        payload.imagem = base64Image;
+
         this.perfilCandidatoService.salvar(payload)
           .subscribe((res: any) => {
             console.log(res);
@@ -122,7 +130,7 @@ export class PerfilCandidatoFormComponent implements OnInit{
       console.error('Erro ao converter imagem para base64:', error);
     }
   }
-  
+
 
   isValidForm(){
     return this.form.valid;

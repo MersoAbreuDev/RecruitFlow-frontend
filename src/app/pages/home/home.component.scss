@@ -1,89 +1,92 @@
-
-.perfil{
-    padding-top: 50px;
+.perfil {
+  padding-top: 50px;
 }
 
-.perfil .perfil-content{
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 30px;
+.perfil .perfil-content {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 30px;
 }
 
-.perfil .perfil-content .content-image{
-    text-align: center;
-    margin: 0 auto;
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    background-color: #ccc;
+.perfil .perfil-content .content-image {
+  text-align: center;
+  margin: 0 auto;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background-color: #ccc;
 }
 
-.perfil .perfil-content .content-image img{
-    max-width: 100%;
-    height: auto;
+.perfil .perfil-content .content-image img {
+  max-width: 100%;
+  height: auto;
 }
 
-.perfil .perfil-content .content-image i{
-    position: absolute;
-    left: 0;
-    font-size: 40px;
-    line-height: 135px;
-    right: 0;
+.perfil .perfil-content .content-image i {
+  position: absolute;
+  left: 0;
+  font-size: 40px;
+  line-height: 135px;
+  right: 0;
 }
 
-.perfil .perfil-content .content-title{ 
-    text-align: center;
-    margin: 10px 0 5px 0;
+.perfil .perfil-content .content-title {
+  text-align: center;
+  margin: 10px 0 5px 0;
 }
 
-.perfil .perfil-content .content-title h2{
-    margin: 0;
-    font-size: 20px;
-    font-weight: 300;
-    color: #5F5F5F;
-} 
-
-.perfil .perfil-content .content-title h2 strong{
-    font-size: 18px;
-    font-weight: 600;
-    color: #5F5F5F;
+.perfil .perfil-content .content-title h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 300;
+  color: #5F5F5F;
 }
 
-.perfil .perfil-content .content-edit{
-    text-align: center;
+.perfil .perfil-content .content-title h2 strong {
+  font-size: 18px;
+  font-weight: 600;
+  color: #5F5F5F;
 }
 
-.perfil .perfil-content .content-edit a{
-    display: block;
-    font-size: 16px;
-    text-decoration: none;
-    color: #5F5F5F;
-    transition: 0.3s;
+.perfil .perfil-content .content-edit {
+  text-align: center;
 }
 
-.perfil .perfil-content .content-edit a:hover{
-    text-decoration: underline;
+.perfil .perfil-content .content-edit a {
+  display: block;
+  font-size: 16px;
+  text-decoration: none;
+  color: #5F5F5F;
+  transition: 0.3s;
+}
+
+.perfil .perfil-content .content-edit a:hover {
+  text-decoration: underline;
 }
 
 .avatar-upload {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-    width: 100%;
-  }
-  
-  .avatar {
-    position: relative;
-    overflow: hidden;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 100%;
+}
 
-  .avatar-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+.avatar {
+  position: relative;
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.elemento-escondido {
+  display: none;
+}

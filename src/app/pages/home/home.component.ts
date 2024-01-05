@@ -10,7 +10,8 @@ import { IPerfilCandidato } from '../../interface/IPerfilCandidato';
 })
 export class HomeComponent implements OnInit{
   perfil!: IPerfilCandidato;
-  id!:number;
+  id!: number;
+  mostrarElemento!: boolean;
   public currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
@@ -22,6 +23,11 @@ export class HomeComponent implements OnInit{
   buscarPorId(){
     this.perfilCandidatoService.buscarPerfilPorId(this.id).subscribe((res)=>{
       this.perfil = res;
+    if (this.perfil == null || Object.keys(this.perfil).length === 0) {
+        this.mostrarElemento = false;
+      } else {
+        this.mostrarElemento = true;
+    }
     })
   }
   ngOnInit(){

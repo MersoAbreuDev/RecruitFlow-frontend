@@ -8,8 +8,11 @@
         <div class="content-title">
             <h2>Bem vindo! <strong>{{perfil?.nome}}</strong></h2>
         </div>
-        <div class="content-edit">
+        <div class="content-edit" [ngClass]="{'elemento-escondido': !mostrarElemento}">
             <a routerLink="/perfil/perfil-view">Ver perfil</a>
+        </div>
+         <div class="content-edit" [ngClass]="{'elemento-escondido': mostrarElemento}">
+            <a routerLink="/perfil">Atualizar perfil!</a>
         </div>
     </div>
 </div>

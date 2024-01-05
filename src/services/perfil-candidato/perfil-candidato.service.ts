@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
 import { SERVER_URI } from '../../server/server';
+import { IPerfilCandidato } from '../../app/interface/IPerfilCandidato';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class PerfilCandidatoService {
   public currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')!));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -29,7 +30,8 @@ export class PerfilCandidatoService {
       }));
   }
 
-  atualizarPerfil(id: number, data: any): Observable<any> {
+  atualizarPerfil(id: number, data: any): Observable<IPerfilCandidato> {
+    console.log("ID: ", id, " Data: ", data)
     return this.http.put(`${SERVER_URI}perfil-candidatos/${id}`, data)
       .pipe(map((data: any) => {
         this.currentUserSubject.next(data);

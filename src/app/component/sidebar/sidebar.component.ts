@@ -52,7 +52,6 @@ export class SidebarComponent{
                 label: 'Cadastrar',
                 icon: 'pi pi-fw pi-user-plus',
                 command: () => {
-                  this.sidebarVisible = !this.sidebarVisible;
                   this.router.navigateByUrl('/user');
                 },
               },
@@ -60,7 +59,6 @@ export class SidebarComponent{
                 label: 'Consultar',
                 icon: 'pi pi-fw pi-list',
                 command: () => {
-                  this.sidebarVisible = !this.sidebarVisible;
                   this.router.navigateByUrl('/user/user-list');
                 },
               },
@@ -74,7 +72,6 @@ export class SidebarComponent{
                 label: 'Cadastrar',
                 icon: 'pi pi-fw pi-user-plus',
                 command: () => {
-                  this.sidebarVisible = !this.sidebarVisible;
                   this.router.navigateByUrl('/vaga');
                 },
               },
@@ -82,7 +79,6 @@ export class SidebarComponent{
                 label: 'Consultar',
                 icon: 'pi pi-fw pi-list',
                 command: () => {
-                  this.sidebarVisible = !this.sidebarVisible;
                   this.router.navigateByUrl('/vaga/vaga-list');
                 },
               },
@@ -157,5 +153,5 @@ export class SidebarComponent{
   isAuthorizedUser(): boolean {
     return this.role !== undefined && this.role !== null && this.role === 'USER';
   }
-  
+
 }

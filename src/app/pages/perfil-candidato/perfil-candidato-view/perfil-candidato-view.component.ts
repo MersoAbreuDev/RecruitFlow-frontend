@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PerfilCandidatoViewComponent {
   visible: boolean = false;
-  idUser!: number;
+  idUser!: any;
   perfil!: IPerfilCandidato;
   requestOptions:any;
   form!: FormGroup;
@@ -73,7 +73,7 @@ export class PerfilCandidatoViewComponent {
       numero:['',[Validators.required]],
       bairro:['',[Validators.required]],
       cidade:['',[Validators.required]],
-      uf:['',[Validators.required]],
+      estado:['',[Validators.required]],
       cep:['',[Validators.required]],
       imagem:[]
     })
@@ -94,20 +94,20 @@ export class PerfilCandidatoViewComponent {
       numero: this.getValueControl(this.form, 'numero'),
       bairro: this.getValueControl(this.form, 'bairro'),
       cidade: this.getValueControl(this.form, 'cidade'),
-      uf: this.getValueControl(this.form, 'uf'),
+      estado: this.getValueControl(this.form, 'estado'),
       cep: this.getValueControl(this.form, 'cep')
     };
-  
+
     const payload = {
       email: this.getValueControl(this.form, 'email'),
       link: this.getValueControl(this.form, 'link'),
       celular: this.getValueControl(this.form, 'celular'),
       nome: this.getValueControl(this.form, 'nome'),
-      endereco,  
+      endereco,
       imagem: "",
       usuario:this.idUser
     };
-  
+
     return payload;
   }
 
@@ -117,18 +117,18 @@ export class PerfilCandidatoViewComponent {
     const base64String = btoa(new Uint8Array(arrayBuffer).reduce((data, byte) => data + String.fromCharCode(byte), ''));
     return `data:${response.headers.get('content-type')};base64,${base64String}`;
   }
-  
+
   async register() {
     const imageUrl = this.imagemSelecionada;
-    
+
     try {
       const base64Image = await this.convertImageToBase64(imageUrl);
-  
+
       if (this.isValidForm()) {
         const payload = this.createPayloadPerfil();
-        payload.imagem = base64Image; 
-  
-        this.perfilCandidatoService.salvar(payload)
+        payload.imagem = base64Image;
+
+        this.perfilCandidatoService.atualizarPerfil(this.idUser.id, payload)
           .subscribe((res: any) => {
             console.log(res);
             this.limparFormulario();
@@ -138,7 +138,7 @@ export class PerfilCandidatoViewComponent {
       console.error('Erro ao converter imagem para base64:', error);
     }
   }
-  
+
 
   isValidForm(){
     return this.form.valid;
