@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../../../services/login/login.service';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-user-form',
@@ -10,7 +11,8 @@ import { LoginService } from '../../../../services/login/login.service';
 })
 export class UserFormComponent {
   form!: FormGroup;
-
+  messages: Message[] = [];
+  
   constructor(private fb: FormBuilder,
               private loginService: LoginService,
               private router: Router){}
@@ -52,9 +54,11 @@ export class UserFormComponent {
       const {email} = this.createPayloadLogin();
       this.loginService.register(this.createPayloadLogin())
       .subscribe((res:any)=>{
-       
-       this.limparFormulario();
+        this.messages = [{ severity: 'success', summary: 'Usuário cadastrado com sucesso!' }];
+        this.limparFormulario();
       })
+    }else{
+      this.messages = [{ severity: 'error', summary: 'Ocorreu um erro ao cadastrar.' }];
     }
   }
 

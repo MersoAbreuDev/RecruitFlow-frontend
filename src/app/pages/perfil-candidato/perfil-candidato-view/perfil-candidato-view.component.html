@@ -1,1 +1,159 @@
-<p>perfil-candidato-view works!</p>
+
+<div class="perfil-user">
+    <div class="content">
+        <div class="content-option">
+            <div class="return">
+                <a routerLink="/home"><i class="pi pi-chevron-left"></i></a>
+            </div>
+            <div class="edit">
+                <a routerLink="#"><i class="pi pi-pencil" (click)="showDialog()"></i></a>
+            </div>
+        </div>
+      <div class="content-info">
+            <div class="p-fluid">
+                <div class="p-col-12">
+                    <div class="avatar-upload">
+                        <div class="avatar">
+                            <img [src]="perfil?.imagem != '' ? perfil?.imagem : ''" alt="Avatar" class="avatar-image" />
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <h2>Nome: </h2>
+                    <p *ngIf="perfil?.nome; else elseNome">{{ perfil?.nome }}</p>
+                    <ng-template #elseNome>-</ng-template>
+                </div>
+                <div class="input-group">
+                    <h2>Telefone: </h2>
+                    <p *ngIf="perfil?.celular; else elseCel">{{ perfil?.celular }}</p>
+                    <ng-template #elseCel>-</ng-template>
+                </div>
+            </div>
+            <div class="p-fluid">
+                <div class="input-group">
+                    <h2>Email: </h2>
+                    <p *ngIf="perfil?.email; else elseEmail">{{ perfil?.email }}</p>
+                    <ng-template #elseEmail>-</ng-template>
+                </div>
+                <div class="input-group">
+                    <h2>Linkedin: </h2>
+                    <p *ngIf="perfil?.link; else elseLink">{{ perfil?.link }}</p>
+                    <ng-template #elseLink>-</ng-template>
+                </div>
+            </div>
+
+            <div class="p-fluid">
+                <div class="p-grid">
+                    <div class="input-group">
+                        <h2>Rua: </h2>
+                        <p *ngIf="perfil?.endereco?.rua; else elseRua">{{ perfil?.endereco?.rua }}</p>
+                        <ng-template #elseRua>-</ng-template>
+                    </div>
+                    <div class="input-group">
+                        <h2>Número: </h2>
+                        <p *ngIf="perfil?.endereco?.numero; else elseNum">{{ perfil?.endereco?.numero }}</p>
+                        <ng-template #elseNum>-</ng-template>
+                    </div>
+                    <div class="input-group">
+                        <h2>Bairro: </h2>
+                        <p *ngIf="perfil?.endereco?.bairro; else elseBairro">{{ perfil?.endereco?.bairro }}</p>
+                        <ng-template #elseBairro>-</ng-template>
+                    </div>
+                    <div class="input-group">
+                        <h2>Cidade: </h2>
+                        <p *ngIf="perfil?.endereco?.cidade; else elseCid">{{ perfil?.endereco?.cidade }}</p>
+                        <ng-template #elseCid>-</ng-template>
+                    </div>
+                    <div class="input-group">
+                        <h2>Estado: </h2>
+                        <p *ngIf="perfil?.endereco?.estado; else elseEst">{{ perfil?.endereco?.estado }}</p>
+                        <ng-template #elseEst>-</ng-template>
+                    </div>
+                    <div class="input-group">
+                        <h2>CEP: </h2>
+                        <p *ngIf="perfil?.endereco?.cep; else elseCep">{{ perfil?.endereco?.cep }}</p>
+                        <ng-template #elseCep>-</ng-template>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </div>
+  </div>
+
+
+<p-dialog [(visible)]="visible" [style]="{width: '35vw'}" [modal]="true" >
+    <form [formGroup]="form" (ngSubmit)="register()">
+        <div class="form">
+            <div class="p-fluid">
+                <div class="p-col-12">
+                  <div class="avatar-upload">
+                      <div class="avatar">
+                          <img *ngIf="imagemSelecionada" [src]="imagemSelecionada" alt="Avatar" class="avatar-image" />
+                          <div class="overlay">
+                            <label for="file-upload" class="overlay-content">
+                              <i class="pi pi-camera"></i>
+                            </label>
+                            <input formControlName="imagem" type="file" id="file-upload" name="file" accept="image/*" (change)="onFileChange($event)" />
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <label for="nome">Nome Completo</label>
+                  <input [(ngModel)]="perfil.nome" name="nome" formControlName="nome" type="text" id="nome" pInputText class="input-style" />
+                </div>
+                <div class="input-group">
+                  <label for="celular">Celular</label>
+                  <p-inputMask [(ngModel)]="perfil.celular" name="celular" mask="(99) 99999-9999" formControlName="celular" placeholder="(99) 99999-9999"></p-inputMask>
+                </div>
+              </div>
+              <div class="p-fluid">
+                <div class="input-group">
+                  <label for="email">E-mail</label>
+                  <input [(ngModel)]="perfil.email" name="email" formControlName="email"  type="text" id="email" pInputText  class="input-style"/>
+                </div>
+                <div class="input-group">
+                  <label for="link">Link Linkedin</label>
+                  <input [(ngModel)]="perfil.link" name="link" formControlName="link" type="text" id="link" pInputText  class="input-style"/>
+                </div>
+              </div>
+      
+              <div class="p-fluid">
+                <div class="p-grid">
+                  <div class="input-group">
+                    <label for="rua">Rua</label>
+                    <input [(ngModel)]="perfil.endereco.rua" name="rua" formControlName="rua" type="text" id="rua" pInputText  class="input-style"/>
+                  </div>
+                  <div class="input-group">
+                    <label for="numero">Número</label>
+                    <input [(ngModel)]="perfil.endereco.numero" name="numero" formControlName="numero" type="text" id="numero" pInputText  class="input-style"/>
+                  </div>
+                  <div class="input-group">
+                    <label for="bairro">Bairro</label>
+                    <input [(ngModel)]="perfil.endereco.bairro" name="bairro" formControlName="bairro" type="text" id="bairro" pInputText  class="input-style"/>
+                  </div>
+                  <div class="input-group">
+                    <label for="cidade">Cidade</label>
+                    <input [(ngModel)]="perfil.endereco.cidade" name="cidade" formControlName="cidade" type="text" id="cidade" pInputText  class="input-style"/>
+                  </div>
+                  <div class="input-group">
+                    <label for="uf">Estado</label>
+                    <input [(ngModel)]="perfil.endereco.estado" name="estado" formControlName="uf" type="text" id="estado" pInputText class="input-style"/>
+                  </div>
+                  <div class="input-group">
+                    <label for="cep">CEP</label>
+                    <p-inputMask [(ngModel)]="perfil.endereco.cep" name="cep" mask="99999-999" formControlName="cep" id="cep" placeholder="99999-999"></p-inputMask>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="input-button">
+            <div class="button-left">
+                 <p-button label="Cancelar" severity="danger" (click)="visible = false"></p-button>
+             </div>
+             <div class="button-right">
+                 <p-button type="submit" label="Salvar" severity="success"></p-button>
+             </div>
+         </div>
+    </form>
+</p-dialog>

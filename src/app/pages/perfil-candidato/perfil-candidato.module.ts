@@ -6,6 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimengModule } from '../../../shared/primeng/primeng.module';
 import { PerfilCandidatoFormComponent } from './perfil-candidato-form/perfil-candidato-form.component';
 import { PerfilCandidatoViewComponent } from './perfil-candidato-view/perfil-candidato-view.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from '../../../interceptor/jwt-interceptor';
+import { MessageService } from 'primeng/api';
+import { DirectiveModule } from '../../../shared/diretives/directives.module';
 
 
 @NgModule({
@@ -15,7 +19,12 @@ import { PerfilCandidatoViewComponent } from './perfil-candidato-view/perfil-can
     PerfilCandidatoRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    PrimengModule
-  ]
+    PrimengModule,
+    DirectiveModule
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    MessageService],
+ 
 })
 export class PerfilCandidatoModule { }

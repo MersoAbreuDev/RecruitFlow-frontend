@@ -1,7 +1,9 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { LoginService } from "../services/login/login.service";
 import { Observable } from "rxjs";
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class JwtInterceptor implements HttpInterceptor {
     constructor(private loginService: LoginService) { }
 
@@ -17,7 +19,6 @@ export class JwtInterceptor implements HttpInterceptor {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
                     'Content-Type': 'application/json; charset=UTF-8',
-
                 }
             });
         }

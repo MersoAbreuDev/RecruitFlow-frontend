@@ -16,6 +16,7 @@ export class VagaService {
     this.currentUser = this.currentUserSubject.asObservable();
 
   }
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -25,7 +26,6 @@ export class VagaService {
 
   public get currentUserValue(): any {
     return this.currentUserSubject.getValue();
-
   }
 
   salvar(vaga: any): Observable<any> {
@@ -60,8 +60,8 @@ export class VagaService {
       }))
   }
 
-  buscarVagaPorId(id: number): Observable<any> {
-    return this.http.get(`${SERVER_URI}vagas/${id}`,).pipe(map((data: any) => {
+  buscarVagaPorId(id: number, data:any): Observable<any> {
+    return this.http.get(`${SERVER_URI}vagas/${id}`,data).pipe(map((data: any) => {
       this.currentUserSubject.next(data);
       return data;
     }));;

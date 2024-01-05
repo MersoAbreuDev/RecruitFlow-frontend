@@ -10,12 +10,10 @@ import { LoginService } from '../../../../services/login/login.service';
   styleUrl: './vaga-table.component.scss'
 })
 export class VagaTableComponent {
+  visible: boolean = false;
   vagas!: IVaga[];
   requestOptions:any;
   role: string | null = null;
-
-  // matchModeOptions: SelectItem[] | undefined;
-
   constructor(
               private vagaService: VagaService,
               private loginService: LoginService) {}
@@ -79,6 +77,14 @@ export class VagaTableComponent {
   
   isAuthorized(): boolean {
     return this.role !== undefined && this.role !== null && this.role === 'ADMIN';
+  }
+
+  showDialog() {
+      this.visible = true;
+  }
+
+  closeDialog() {
+      this.visible = false;
   }
   
 }

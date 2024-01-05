@@ -1,5 +1,5 @@
 .perfil-user {
-  width: 450px;
+  max-width: 650px;
   background-color: var(--white);
   box-sizing: border-box;
   padding: 32px;
@@ -9,7 +9,7 @@
   align-items: center;
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
   margin: 0 auto;
-  margin-top: 15px;
+  margin-top: 25px;
 }
 
 .content {
@@ -18,6 +18,17 @@
 
 .input-group {
   margin-bottom: 15px;
+  width: 50%;
+  float: left;
+  padding: 0 10px;
+}
+
+.input-group label{
+  font-size: 16px;
+}
+
+.input-button{
+  padding: 0 10px;
 }
 
 .input-button .button-left {
@@ -40,6 +51,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 30px;
 }
 
 .avatar {
@@ -76,6 +88,7 @@
 .overlay:hover {
   opacity: 1;
 }
+
 
 .file-upload {
   display: none;

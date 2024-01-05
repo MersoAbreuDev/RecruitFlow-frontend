@@ -13,7 +13,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { SharedModule } from "primeng/api";
 import { InputTextModule } from "primeng/inputtext";
 import { InputTextareaModule } from 'primeng/inputtextarea';
-
+import { MessagesModule } from 'primeng/messages';
+import { InputMaskModule } from 'primeng/inputmask';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
     declarations: [],
@@ -30,7 +32,10 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
         SharedModule,
         InputTextModule,
         DropdownModule,
-        InputTextareaModule
+        InputTextareaModule,
+        MessagesModule,
+        InputMaskModule,
+        DialogModule
   
     ],
     exports:[
@@ -46,7 +51,10 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
         SharedModule,
         InputTextModule,
         DropdownModule,
-        InputTextareaModule
+        InputTextareaModule,
+        MessagesModule,
+        InputMaskModule,
+        DialogModule
     ]
   })
   export class PrimengModule { }

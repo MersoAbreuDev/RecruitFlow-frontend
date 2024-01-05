@@ -1,0 +1,18 @@
+<div class="perfil">
+    <div class="perfil-content container">
+        <div class="avatar-upload">
+            <div class="avatar">
+              <img *ngIf="perfil?.imagem" [src]="perfil?.imagem" alt="Avatar" class="avatar-image" />
+            </div>
+        </div>
+        <div class="content-title">
+            <h2>Bem vindo! <strong>{{perfil?.nome}}</strong></h2>
+        </div>
+        <div class="content-edit">
+            <a routerLink="/perfil/perfil-view">Ver perfil</a>
+        </div>
+    </div>
+</div>
+<div>
+    <app-vaga-table></app-vaga-table>
+</div>

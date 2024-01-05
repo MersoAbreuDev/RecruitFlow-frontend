@@ -1,6 +1,6 @@
 
 .vacancie{
-    padding-top: 50px;
+    padding-top: 30px;
 }
 
 .list-vacancie{
@@ -60,10 +60,11 @@
 
 .item-status{
     text-align: left;
-    width: 100%;
+    width: 50%;
+    float: left;
 }
 
-.item-status i{
+.item-status .active{
     margin-right: 10px;
     padding: 5px;
     border: 1px solid #00BF28;
@@ -73,7 +74,56 @@
     display: inline-block;
 }
 
+.item-status .inative{
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #ccc;
+    display: inline-block;
+}
+
 .item-status p{
     display: inline-block;
     font-weight: 500;
+}
+
+
+.item-button{
+    padding: 3px 0;
+    text-align: right;
+    width: 50%;
+    float: left;
+}
+
+.item-button button i{
+    margin-right: 5px;
+}
+
+.modal-title h2{
+    font-size: 16px;
+    margin: 0;
+}
+
+.modal-text{
+    padding: 15px 0 30px;
+}
+
+.modal-text p{
+    font-size: 16px;
+    margin: 0;
+}
+
+.modal-buttons .button-left{
+    width: 50%;
+    float: left;
+    text-align: left;
+}
+
+
+.modal-buttons .button-right{
+    width: 50%;
+    float: right;
+    text-align: right;
 }

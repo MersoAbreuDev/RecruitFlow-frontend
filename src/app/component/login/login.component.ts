@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../../services/login/login.service';
 import { Router } from '@angular/router';
+import { Message } from 'primeng/api';
 
 
 @Component({
@@ -12,6 +13,8 @@ import { Router } from '@angular/router';
 
 export class LoginComponent implements OnInit{
 
+  messages: Message[] = [];
+  
   form!: FormGroup;
 
   constructor(private fb: FormBuilder,
@@ -52,9 +55,10 @@ export class LoginComponent implements OnInit{
       this.loginService.login(this.createPayloadLogin())
       .subscribe((res:any)=>{
         let {token} = res;
-        this.navigateURL('vaga/vaga-list');
+        this.navigateURL('home');
       })
-      
+    }else{
+      this.messages = [{ severity: 'error', summary: 'Login ou senha incorretos'}];
     }
   }
 

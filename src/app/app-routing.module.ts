@@ -31,6 +31,11 @@ const routes: Routes = [
         path: 'vaga',
         loadChildren: () => import('./pages/vagas/vaga.module').then( m => m.VagaModule),
         canActivate:[AuthGuard]
+      },
+      {
+        path: 'perfil',
+        loadChildren: () => import('./pages/perfil-candidato/perfil-candidato.module').then( m => m.PerfilCandidatoModule),
+       
       }
 ];
 

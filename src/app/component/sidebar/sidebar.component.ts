@@ -16,7 +16,7 @@ export class SidebarComponent{
   isLoginPage!: boolean;
   role: string | null = null;
 
-  constructor(private router: Router, private loginService: LoginService) {
+  constructor(private router: Router, private loginService: LoginService, private cdr: ChangeDetectorRef) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (event.url == '/login' || event.url == '/signup') {
@@ -52,6 +52,7 @@ export class SidebarComponent{
                 label: 'Cadastrar',
                 icon: 'pi pi-fw pi-user-plus',
                 command: () => {
+                  this.sidebarVisible = !this.sidebarVisible;
                   this.router.navigateByUrl('/user');
                 },
               },
@@ -59,6 +60,7 @@ export class SidebarComponent{
                 label: 'Consultar',
                 icon: 'pi pi-fw pi-list',
                 command: () => {
+                  this.sidebarVisible = !this.sidebarVisible;
                   this.router.navigateByUrl('/user/user-list');
                 },
               },
@@ -72,6 +74,7 @@ export class SidebarComponent{
                 label: 'Cadastrar',
                 icon: 'pi pi-fw pi-user-plus',
                 command: () => {
+                  this.sidebarVisible = !this.sidebarVisible;
                   this.router.navigateByUrl('/vaga');
                 },
               },
@@ -79,6 +82,7 @@ export class SidebarComponent{
                 label: 'Consultar',
                 icon: 'pi pi-fw pi-list',
                 command: () => {
+                  this.sidebarVisible = !this.sidebarVisible;
                   this.router.navigateByUrl('/vaga/vaga-list');
                 },
               },
@@ -101,9 +105,42 @@ export class SidebarComponent{
         ],
       },
       {
+        label: 'Candidato',
+        icon: 'pi pi-fw pi-file',
+        visible:this.isAuthorizedUser(),
+        items: [
+          // {
+          //   label: 'Perfil',
+          //   icon: 'pi pi-fw pi-plus',
+          //   items: [
+          //     {
+          //       label: 'Cadastrar',
+          //       icon: 'pi pi-fw pi-user-plus',
+          //       command: () => {
+          //         this.router.navigateByUrl('/perfil');
+          //       },
+          //     },
+          //     {
+          //       label: 'Consulta',
+          //       icon: 'pi pi-fw pi-user-plus',
+          //       command: () => {
+          //         this.router.navigateByUrl('/perfil/perfil-view');
+          //       },
+          //     },
+          //   ],
+          // },
+        ],
+      },
+      {
         label: 'Sair',
         icon: 'pi pi-fw pi-power-off',
         command: () => {
+          this.sidebarVisible = !this.sidebarVisible;
+          const overlay = document.querySelector('.p-component-overlay');
+          if (overlay) {
+            overlay.remove();
+          }
+          this.cdr.detectChanges();
           localStorage.clear();
           setTimeout(() => {
             this.router.navigate(['login']);
@@ -116,4 +153,9 @@ export class SidebarComponent{
   isAuthorized(): boolean {
     return this.role !== undefined && this.role !== null && this.role === 'ADMIN';
   }
+
+  isAuthorizedUser(): boolean {
+    return this.role !== undefined && this.role !== null && this.role === 'USER';
+  }
+  
 }

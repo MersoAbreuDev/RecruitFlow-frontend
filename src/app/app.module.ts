@@ -7,8 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { ComponentModule } from './component/component.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
-
-
+import { JwtInterceptor } from '../interceptor/jwt-interceptor';
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 @NgModule({
@@ -19,14 +19,18 @@ import { MessageService } from 'primeng/api';
     ComponentModule,
     CommonModule,
     BrowserAnimationsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [
-   
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     MessageService],
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA
   ],
+  exports:[
+
+  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

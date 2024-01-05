@@ -1,4 +1,5 @@
-<div class="vacancie ">
+
+<div class="vacancie">
     <div class="list-vacancie container" *ngFor="let vaga of vagas">
         <div class="item">
             <div class="item-title">
@@ -11,11 +12,40 @@
                     - {{vaga.descricao}} <br>
                 </p>
             </div>
-            <div class="item-status">
-                <i class="pi pi-check"></i>
-                <p>{{vaga.status}}</p>
+            <div style="width: 100%;">
+                <div class="item-status">
+                    <i class="pi pi-check active"></i>
+                    <i class="pi pi-ban inative"></i>
+                    <p>{{vaga.status}}</p>
+                </div>
+                <div class="item-button">
+                    <button pButton pRipple (click)="showDialog()" label="Candidatar" class="p-button-success"></button>
+                    <button pButton pRipple label="Ver"><i class="pi pi-eye"></i></button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<p-dialog header="Atenção" [(visible)]="visible" [modal]="true" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '18vw' }" [draggable]="false" [resizable]="false" [style]="{ width: '18vw' }" [draggable]="false" [resizable]="false">
+    <ng-template pTemplate="header">
+        <div class="modal-title">
+            <h2>Atenção</h2>
+        </div>
+    </ng-template>
+    <div class="modal-text">
+        <p>
+            Deseja candidatar-se a vaga?
+        </p>
+    </div>
+    <div class="modal-buttons">
+        <div class="button-left">
+            <p-button label="Cancelar" severity="danger" (click)="closeDialog()"></p-button>
+        </div>
+        <div class="button-right">
+            <p-button type="submit" label="Candidatar-se" severity="success"></p-button>
+        </div>
+    </div>
+</p-dialog>
+
 
