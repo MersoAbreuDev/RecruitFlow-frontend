@@ -42,7 +42,7 @@ export class PerfilCandidatoViewComponent {
       this.id = res.id;
     });
     this.buscarPorId();
-    this.initForms()
+    this.initForms();
     this.currentUser.subscribe((res:any)=>{
       this.idUser = res;
     });

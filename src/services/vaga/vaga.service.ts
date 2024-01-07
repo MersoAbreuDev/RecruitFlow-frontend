@@ -60,8 +60,8 @@ export class VagaService {
       }))
   }
 
-  buscarVagaPorId(id: number, data:any): Observable<any> {
-    return this.http.get(`${SERVER_URI}vagas/${id}`,data).pipe(map((data: any) => {
+  buscarVagaPorId(id: number): Observable<any> {
+    return this.http.get(`${SERVER_URI}vagas/${id}`).pipe(map((data: any) => {
       this.currentUserSubject.next(data);
       return data;
     }));;

@@ -3,6 +3,7 @@ import { VagaService } from '../../../../services/vaga/vaga.service';
 import { HttpParams } from '@angular/common/http';
 import { IVaga } from '../../../interface/IVaga';
 import { LoginService } from '../../../../services/login/login.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-vaga-table',
@@ -10,13 +11,18 @@ import { LoginService } from '../../../../services/login/login.service';
   styleUrl: './vaga-table.component.scss'
 })
 export class VagaTableComponent {
-  visible: boolean = false;
+  visibleEdit: boolean = false;
+  visibleApply: boolean = false;
   vagas!: IVaga[];
+  vaga!: IVaga;
+  formEdit!: FormGroup;
+  id!:number;
   requestOptions:any;
   role: string | null = null;
   constructor(
               private vagaService: VagaService,
-              private loginService: LoginService) {}
+              private loginService: LoginService,
+              private fb: FormBuilder) {}
 
   ngOnInit() {
     this.loginService.role$.subscribe((role) => {
@@ -57,21 +63,42 @@ export class VagaTableComponent {
        //this.carService.getCarsMedium().then((data:any) => (this.medicamentos = data));
 
     this.buscarUsuarios();
+    this.initForms();
+    this.buscarPorId();
+  }
+
+  initForms(){
+    this.formEdit = this.fb.group({
+      titulo:['',[Validators.required]],
+      descricao:['',[Validators.required]],
+      status:['', [Validators.required]],
+    })
   }
 
   buscarUsuarios(){
     this.vagaService.buscarTodasVagas(this.requestOptions).subscribe((data:any) => this.vagas= data);
   }
 
+  buscarPorId(){
+    this.vagaService.buscarVagaPorId(this.id).subscribe((res)=>{
+      this.vaga = res;
+    })
+  }
+
   editar(){
     alert("Editar")
   }
+
   excluir(){
     alert("Excluir")
   }
 
-  modal(){
-    alert("Chamou")
+  showDialogEdit() {
+    this.visibleEdit = true;
+  }
+
+  closeDialogEdit() {
+    this.visibleEdit = false;
   }
 
   
@@ -79,12 +106,16 @@ export class VagaTableComponent {
     return this.role !== undefined && this.role !== null && this.role === 'ADMIN';
   }
 
-  showDialog() {
-      this.visible = true;
+  showDialogApply() {
+      this.visibleApply = true;
   }
 
-  closeDialog() {
-      this.visible = false;
+  closeDialogApply() {
+      this.visibleApply = false;
+  }
+
+  atualizarVaga(){
+    
   }
   
 }
