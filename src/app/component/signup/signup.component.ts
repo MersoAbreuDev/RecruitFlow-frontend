@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../../services/login/login.service';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../../../services/local-storage/local-storage.service';
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +14,8 @@ export class SignupComponent {
 
   constructor(private fb: FormBuilder,
               private loginService: LoginService,
-              private router: Router){}
+              private router: Router,
+              private localStorageService: LocalStorageService) { }
 
 
 
@@ -46,15 +48,15 @@ export class SignupComponent {
 
     return payload;
   }
-  
-  
+
+
   register(){
     if(this.isValidForm()){
       const {email} = this.createPayloadLogin();
       this.loginService.register(this.createPayloadLogin())
       .subscribe((res:any)=>{
-        let {token} = res;
-        this.navigateURL('home');
+        console.log(res);
+        this.navigateURL('login');
       })
     }
   }

@@ -84,20 +84,6 @@ export class SidebarComponent{
               },
             ],
           },
-          {
-            label: 'Avaliação Candidato',
-            icon: 'pi pi-fw pi-plus',
-            items: [
-              {
-                label: 'Avaliar',
-                icon: 'pi pi-fw pi-user-plus',
-              },
-              {
-                label: 'Consultar',
-                icon: 'pi pi-fw pi-list',
-              },
-            ],
-          },
         ],
       },
       {
@@ -105,26 +91,19 @@ export class SidebarComponent{
         icon: 'pi pi-fw pi-file',
         visible:this.isAuthorizedUser(),
         items: [
-          // {
-          //   label: 'Perfil',
-          //   icon: 'pi pi-fw pi-plus',
-          //   items: [
-          //     {
-          //       label: 'Cadastrar',
-          //       icon: 'pi pi-fw pi-user-plus',
-          //       command: () => {
-          //         this.router.navigateByUrl('/perfil');
-          //       },
-          //     },
-          //     {
-          //       label: 'Consulta',
-          //       icon: 'pi pi-fw pi-user-plus',
-          //       command: () => {
-          //         this.router.navigateByUrl('/perfil/perfil-view');
-          //       },
-          //     },
-          //   ],
-          // },
+          {
+            label: 'Candidaturas',
+            icon: 'pi pi-fw pi-plus',
+            items: [
+              {
+                label: 'Minhas Candidaturas',
+                icon: 'pi pi-fw pi-user-plus',
+                command: () => {
+                  this.router.navigateByUrl('/avaliacao');
+                },
+              },
+            ],
+          },
         ],
       },
       {

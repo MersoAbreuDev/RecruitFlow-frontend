@@ -4,6 +4,7 @@ import { LoginComponent } from "./login.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LoginRoutingModule } from "./login-routing.module";
 import { PrimengModule } from "../../../shared/primeng/primeng.module";
+import { MessageService } from "primeng/api";
 
 
 
@@ -17,7 +18,6 @@ import { PrimengModule } from "../../../shared/primeng/primeng.module";
       CommonModule,
       ReactiveFormsModule,
       PrimengModule,
-
-    ]
+  ],
   })
   export class LoginModule { }

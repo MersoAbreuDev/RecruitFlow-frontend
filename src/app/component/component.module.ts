@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { CommonModule } from "@angular/common";
 import { SignupComponent } from "./signup/signup.component";
+import { MessageService } from "primeng/api";
 
 @NgModule({
     declarations: [SidebarComponent],
@@ -11,11 +12,13 @@ import { SignupComponent } from "./signup/signup.component";
         PrimengModule,
         FormsModule,
         ReactiveFormsModule,
-        CommonModule
+        CommonModule,
+        PrimengModule
     ],
     schemas:[
         CUSTOM_ELEMENTS_SCHEMA
-      ],
+  ],
+    providers:[MessageService],
     exports:[
         SidebarComponent
     ]
