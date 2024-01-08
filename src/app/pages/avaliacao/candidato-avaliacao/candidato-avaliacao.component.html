@@ -98,21 +98,22 @@
 
 <p-dialog header="Avaliar candidato" [(visible)]="visibleAvaliacao" [modal]="true" [style]="{ width: '20vw' }" [draggable]="false">
     <div class="card flex justify-content-center">
-        <form [formGroup]="form">
-            <div class="input-group">
-                <label for="avaliacao">Avaliação</label>
-                <p-dropdown formControlName="avaliacao" [style]="{'width':'100%'}" [options]="status" id="avaliacao" optionLabel="name" placeholder="Selecione a avaliação"></p-dropdown>
+        <form [formGroup]="form" (ngSubmit)="enviarFeedback()">
+           <div class="input-group">
+                    <label for="status">Status</label>
+                    <p-dropdown formControlName="status"  [(ngModel)]="selectedStatus" [style]="{'width':'100%'}" [options]="status" [(ngModel)]="selectedStatus" optionLabel="status" [showClear]="true" placeholder="Status">
+                    </p-dropdown>
             </div>
             <div class="input-group">
-                <label for="mensagem">Mensagem</label>
-                <textarea id="mensagem" pInputTextarea [autoResize]="true" formControlName="mensagem" placeholder="Escreva o feedback"></textarea>
+                <label for="feedback">Mensagem</label>
+                <textarea id="feedback" pInputTextarea [autoResize]="true" formControlName="feedback" placeholder="Escreva o feedback"></textarea>
             </div>
             <div class="input-button">
                 <div class="button-left">
                     <p-button label="Cancelar" (click)="closeDialogAvaliacao()" severity="danger"></p-button>
                 </div>
                 <div class="button-right">
-                    <p-button label="Enviar" severity="success"></p-button>
+                    <p-button label="Enviar" type="submit"  severity="success"></p-button>
                 </div>
             </div>
         </form>

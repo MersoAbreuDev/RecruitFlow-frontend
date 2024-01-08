@@ -89,7 +89,6 @@ export class VagaTableComponent {
       this.candidatarService.candidatar(payload).subscribe((res) => {
         console.log(res);
         this.utils.showSuccess("Sucesso!");
-        this.closeDialog();
     })
   }
 

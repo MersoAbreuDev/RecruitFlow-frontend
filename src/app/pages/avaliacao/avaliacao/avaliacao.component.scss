@@ -59,7 +59,7 @@
 
 .item-status {
   text-align: left;
-  width: 50%;
+  width: 70%;
   float: left;
 }
 
@@ -83,16 +83,26 @@
   display: inline-block;
 }
 
+.item-status .question {
+  margin-right: 10px;
+  padding: 5px;
+  border: 1px solid #f0a12b;
+  border-radius: 50%;
+  color: #FFFF;
+  background-color: #f0a12b;
+  display: inline-block;
+}
+
 .item-status p {
   display: inline-block;
-  font-weight: 500;
+  font-size: 14px;
 }
 
 
 .item-button {
   padding: 3px 0;
   text-align: right;
-  width: 50%;
+  width: 30%;
   float: left;
 }
 
