@@ -1,0 +1,40 @@
+
+<div class="vacancie">
+    <div class="list-vacancie container" *ngFor="let vaga of vagas">
+        <div class="item">
+            <div class="item-title">
+                <h2>{{vaga.vaga.titulo}}<i *ngIf=" isAuthorized()" style="float: right;cursor: pointer;" class="pi pi-pencil"></i></h2>
+            </div>
+            <div class="item-description">
+                <h3>Especificações</h3>
+                <p>
+                    - {{vaga.vaga.descricao}} <br>
+                </p>
+            </div>
+            <div style="width: 100%;">
+                <div class="item-status">
+                    <i class="pi pi-check active"></i>
+                    <i *ngIf="vaga.vaga.status != 'ATIVA'? true : false" class="pi pi-ban inative"></i>
+                    <p>{{vaga.vaga.status}}</p>
+                </div>
+                <div class="item-button">
+                    <button pButton pRipple pi-comment type="submit" *ngIf="isAuthorizedUser() && vaga.feedback != null " (click)="showDialog(vaga.feedback)"><i class="pi pi-comment"></i></button>
+                    <button *ngIf="isAuthorized()" pButton pRipple label="Ver"><i class="pi pi-eye"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog header="Feedback" [(visible)]="visible" [modal]="true" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '25vw' }" [draggable]="false" [resizable]="false" [style]="{ width: '18vw' }" [draggable]="false" [resizable]="false">
+    <ng-template pTemplate="header">
+        <div class="modal-title">
+            <h2>Este é nosso Feedback para você!</h2>
+        </div>
+    </ng-template>
+    <div class="modal-text">
+        <p>
+          {{feedbackSelecionado}}
+        </p>
+    </div>
+</p-dialog>

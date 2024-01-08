@@ -1,0 +1,169 @@
+.list-user {
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 150px;
+}
+
+.table {
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+  padding: 30px;
+}
+
+.table thead tr th {
+  text-align: left;
+}
+
+.perfil-user {
+  max-width: 650px;
+  background-color: var(--white);
+  box-sizing: border-box;
+  padding: 32px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
+.content {
+  width: 100%;
+}
+
+.input-button {
+  display: inline-block;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  width: 50%;
+  float: left;
+  padding: 0 10px;
+}
+
+.input-group h2 {
+  font-size: 16px;
+  margin: 0 0 5px;
+}
+
+.input-group p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.input-button .button-left {
+  width: 50%;
+  text-align: left;
+  float: left;
+}
+
+.input-button .button-right {
+  text-align: right;
+  width: 50%;
+  float: left;
+}
+
+.input-style {
+  width: 100%;
+  height: 38px;
+}
+
+.form {
+  width: 100%;
+  display: inline-block;
+}
+
+.avatar-upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.avatar {
+  position: relative;
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+
+.overlay:hover {
+  opacity: 1;
+}
+
+.file-upload {
+  display: none;
+  /* Oculta o componente de upload, mas ainda é clicável */
+}
+
+.overlay input {
+  display: none;
+}
+
+.overlay i {
+  color: #fff;
+  font-size: 3.2rem;
+  cursor: pointer;
+  padding: 30px;
+}
+
+.return {
+  float: left;
+  text-align: left;
+  width: 50%;
+}
+
+.return a {
+  color: #333;
+  text-decoration: none;
+}
+
+.return a i {
+  font-size: 20px;
+}
+
+.edit {
+  float: left;
+  text-align: right;
+  width: 50%;
+}
+
+.edit a {
+  color: #333;
+  text-decoration: none;
+}
+
+.edit a i {
+  font-size: 20px;
+}

@@ -1,0 +1,94 @@
+<div class="list-user">
+    <p-table [value]="candidatos" [tableStyle]="{ 'min-width': '50rem' }" class="table">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-canditatos>
+            <tr>
+                <td>{{canditatos.perfilCandidato.nome}}</td>
+                <td>
+                    <button style="margin-right:5px ;" pButton pRipple icon="pi pi-eye" (click)="perfilView(canditatos.idCandidato)" class="p-button-rounded mr-2" ></button>
+                    <button pButton pRipple icon="pi pi-comments" class="p-button-rounded p-button-help ml-2" ></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog [(visible)]="visible" [style]="{width: '45vw'}" [modal]="true" >
+  <div class="perfil-user">
+    <div class="content">
+      <div class="content-info">
+            <div class="p-fluid">
+                <div class="p-col-12">
+                    <div class="avatar-upload">
+                        <div class="avatar">
+                            <img [src]="perfil?.imagem != '' ? perfil?.imagem : ''" alt="Avatar" class="avatar-image" />
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <h2>Nome: </h2>
+                    <p *ngIf="perfil?.nome; else elseNome">{{ perfil?.nome }}</p>
+                    <ng-template #elseNome>-</ng-template>
+                </div>
+                <div class="input-group">
+                    <h2>Telefone: </h2>
+                    <p *ngIf="perfil?.celular; else elseCel">{{ perfil?.celular }}</p>
+                    <ng-template #elseCel>-</ng-template>
+                </div>
+            </div>
+            <div class="p-fluid">
+                <div class="input-group">
+                    <h2>Email: </h2>
+                    <p *ngIf="perfil?.email; else elseEmail">{{ perfil?.email }}</p>
+                    <ng-template #elseEmail>-</ng-template>
+                </div>
+                <div class="input-group">
+                    <h2>Linkedin: </h2>
+                    <p *ngIf="perfil?.link; else elseLink">{{ perfil?.link }}</p>
+                    <ng-template #elseLink>-</ng-template>
+                </div>
+            </div>
+
+            <div class="p-fluid">
+                <div class="p-grid">
+                    <div class="input-group">
+                        <h2>Rua: </h2>
+                        <p *ngIf="perfil?.endereco?.rua; else elseRua">{{ perfil?.endereco?.rua }}</p>
+                        <ng-template #elseRua>-</ng-template>
+                    </div>
+                    <div class="input-group">
+                        <h2>Número: </h2>
+                        <p *ngIf="perfil?.endereco?.numero; else elseNum">{{ perfil?.endereco?.numero }}</p>
+                        <ng-template #elseNum>-</ng-template>
+                    </div>
+                    <div class="input-group">
+                        <h2>Bairro: </h2>
+                        <p *ngIf="perfil?.endereco?.bairro; else elseBairro">{{ perfil?.endereco?.bairro }}</p>
+                        <ng-template #elseBairro>-</ng-template>
+                    </div>
+                    <div class="input-group">
+                        <h2>Cidade: </h2>
+                        <p *ngIf="perfil?.endereco?.cidade; else elseCid">{{ perfil?.endereco?.cidade }}</p>
+                        <ng-template #elseCid>-</ng-template>
+                    </div>
+                    <div class="input-group">
+                        <h2>Estado: </h2>
+                        <p *ngIf="perfil?.endereco?.estado; else elseEst">{{ perfil?.endereco?.estado }}</p>
+                        <ng-template #elseEst>-</ng-template>
+                    </div>
+                    <div class="input-group">
+                        <h2>CEP: </h2>
+                        <p *ngIf="perfil?.endereco?.cep; else elseCep">{{ perfil?.endereco?.cep }}</p>
+                        <ng-template #elseCep>-</ng-template>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</p-dialog>
