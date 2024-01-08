@@ -1,6 +1,7 @@
 import { IEndereco } from "./IEndereco"
 
 export interface IPerfilCandidato{
+    id:number,
     nome:string,
     celular:string,
     email:string,

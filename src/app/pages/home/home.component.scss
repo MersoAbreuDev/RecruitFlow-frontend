@@ -90,3 +90,19 @@
 .elemento-escondido {
   display: none;
 }
+
+.alert-container {
+  align-items: center;
+  padding: 10px;
+  background-color: #ffd700; // Cor de fundo amarelo para chamar atenção
+  color: #333; // Cor do texto
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+
+  i {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #333; // Cor do ícone
+  }
+}

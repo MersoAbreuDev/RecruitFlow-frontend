@@ -8,7 +8,7 @@ import { PerfilCandidatoFormComponent } from './perfil-candidato-form/perfil-can
 import { PerfilCandidatoViewComponent } from './perfil-candidato-view/perfil-candidato-view.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from '../../../interceptor/jwt-interceptor';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { DirectiveModule } from '../../../shared/diretives/directives.module';
 
 
@@ -23,8 +23,7 @@ import { DirectiveModule } from '../../../shared/diretives/directives.module';
     DirectiveModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    MessageService],
- 
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+
 })
 export class PerfilCandidatoModule { }

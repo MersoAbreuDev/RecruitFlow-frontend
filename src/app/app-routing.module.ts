@@ -35,7 +35,12 @@ const routes: Routes = [
       {
         path: 'perfil',
         loadChildren: () => import('./pages/perfil-candidato/perfil-candidato.module').then( m => m.PerfilCandidatoModule),
-       
+        canActivate:[AuthGuard]
+      },
+      {
+        path: 'avaliacao',
+        loadChildren: () => import('./pages/avaliacao/avaliacao.module').then( m => m.AvaliacaoModule),
+        canActivate:[AuthGuard]
       }
 ];
 

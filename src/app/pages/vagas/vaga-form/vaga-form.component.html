@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="new-user">
     <div class="content">
         <div class="content-title">
@@ -12,14 +13,14 @@
                 <div class="input-group">
                     <label for="descricao">Descrição</label>
                     <textarea [autoResize]="true"  [style]="{'width':'100%'}"  id="descricao" rows="5" cols="30" pInputTextarea formControlName="descricao"></textarea>
-                   
+
                 </div>
                 <div class="input-group">
                     <label for="status">Status</label>
                     <p-dropdown formControlName="status"  [style]="{'width':'100%'}" [options]="status" [(ngModel)]="selectedStatus" optionLabel="status" [showClear]="true" placeholder="Status">
                     </p-dropdown>
                 </div>
-                
+
                 <div class="input-button">
                     <div class="button-left">
                         <p-button (onClick)="limparFormulario()" label="Cancelar" severity="danger"></p-button>

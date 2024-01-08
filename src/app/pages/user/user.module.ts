@@ -6,6 +6,7 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { UserTableComponent } from './user-table/user-table.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimengModule } from '../../../shared/primeng/primeng.module';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({

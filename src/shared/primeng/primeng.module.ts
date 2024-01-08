@@ -16,7 +16,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MessagesModule } from 'primeng/messages';
 import { InputMaskModule } from 'primeng/inputmask';
 import { DialogModule } from 'primeng/dialog';
-
+import { ToastModule } from 'primeng/toast';
 @NgModule({
     declarations: [],
     imports: [
@@ -35,8 +35,9 @@ import { DialogModule } from 'primeng/dialog';
         InputTextareaModule,
         MessagesModule,
         InputMaskModule,
-        DialogModule
-  
+        DialogModule,
+        ToastModule
+
     ],
     exports:[
         DividerModule,
@@ -54,7 +55,8 @@ import { DialogModule } from 'primeng/dialog';
         InputTextareaModule,
         MessagesModule,
         InputMaskModule,
-        DialogModule
+        DialogModule,
+        ToastModule
     ]
   })
   export class PrimengModule { }

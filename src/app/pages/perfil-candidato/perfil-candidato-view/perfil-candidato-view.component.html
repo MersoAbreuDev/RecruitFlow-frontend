@@ -88,12 +88,12 @@
                 <div class="p-col-12">
                   <div class="avatar-upload">
                       <div class="avatar">
-                          <img *ngIf="imagemSelecionada" [src]="imagemSelecionada" alt="Avatar" class="avatar-image" />
+                          <img [src]="imagemSelecionada" alt="Avatar" class="avatar-image" />
                           <div class="overlay">
                             <label for="file-upload" class="overlay-content">
                               <i class="pi pi-camera"></i>
                             </label>
-                            <input formControlName="imagem" type="file" id="file-upload" name="file" accept="image/*" (change)="onFileChange($event)" />
+                            <input formControlName="imagemSelecionada" type="file" id="file-upload" name="file" accept="image/*" (change)="onFileChange($event)" />
                           </div>
                       </div>
                   </div>

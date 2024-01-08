@@ -10,8 +10,10 @@ export class UtilsService {
   async showSuccess(message:string){
        await this.messageService.add({severity:'success', summary: 'Sucesso!', detail: message});
    }
- 
-   async showError(message: string){
-     await this.messageService.add({severity:'error', summary:'Erro: ', detail:message});
-   }
+
+  async showError(message: string){
+    await this.messageService.add({ severity: 'error', summary: 'Erro: ', detail: message });
+  }
+
+
 }

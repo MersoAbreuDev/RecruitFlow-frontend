@@ -1,10 +1,9 @@
-
+<p-toast></p-toast>
 <div class="vacancie">
     <div class="list-vacancie container" *ngFor="let vaga of vagas">
         <div class="item">
             <div class="item-title">
-                <h2>{{vaga.titulo}}<i *ngIf=" isAuthorized()" (click)="modal()" style="float: right;cursor: pointer;" class="pi pi-pencil"></i></h2>
-                
+                <h2>{{vaga.titulo}}<i *ngIf=" isAuthorized()" style="float: right;cursor: pointer;" class="pi pi-pencil"></i></h2>
             </div>
             <div class="item-description">
                 <h3>Especificações</h3>
@@ -15,18 +14,18 @@
             <div style="width: 100%;">
                 <div class="item-status">
                     <i class="pi pi-check active"></i>
-                    <i class="pi pi-ban inative"></i>
+                    <i *ngIf="vaga.status != 'ATIVA'? true : false" class="pi pi-ban inative"></i>
                     <p>{{vaga.status}}</p>
                 </div>
                 <div class="item-button">
-                    <button pButton pRipple (click)="showDialog()" label="Candidatar" class="p-button-success"></button>
-                    <button pButton pRipple label="Ver"><i class="pi pi-eye"></i></button>
+                    <button pButton pRipple [disabled]="perfil === null" *ngIf="isAuthorizedUser()" (click)="showDialog(vaga.id)" label="Candidatar" class="p-button-success"></button>
+                    <button *ngIf="isAuthorized()" pButton pRipple label="Ver" (click)="navigateAvaliacao(vaga.id)"><i class="pi pi-eye"></i></button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<p-toast></p-toast>
 <p-dialog header="Atenção" [(visible)]="visible" [modal]="true" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '18vw' }" [draggable]="false" [resizable]="false" [style]="{ width: '18vw' }" [draggable]="false" [resizable]="false">
     <ng-template pTemplate="header">
         <div class="modal-title">
@@ -43,7 +42,7 @@
             <p-button label="Cancelar" severity="danger" (click)="closeDialog()"></p-button>
         </div>
         <div class="button-right">
-            <p-button type="submit" label="Candidatar-se" severity="success"></p-button>
+            <p-button type="submit" (click)="candidatar()"  label="Candidatar-se" severity="success"></p-button>
         </div>
     </div>
 </p-dialog>

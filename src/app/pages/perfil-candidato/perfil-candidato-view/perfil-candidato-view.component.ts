@@ -29,7 +29,7 @@ export class PerfilCandidatoViewComponent {
   buscarPorId(){
     this.perfilCandidatoService.buscarPerfilPorId(this.id).subscribe((res)=>{
       this.perfil = res;
-      this.mensagem = res.imagem;
+      this.imagemSelecionada = res.imagem;
     })
   }
 

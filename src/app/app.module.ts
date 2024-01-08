@@ -6,9 +6,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentModule } from './component/component.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { MessageService } from 'primeng/api';
 import { JwtInterceptor } from '../interceptor/jwt-interceptor';
-import { TextMaskModule } from 'angular2-text-mask';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -22,8 +21,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    MessageService],
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA
   ],

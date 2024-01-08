@@ -1,4 +1,5 @@
-<div class="perfil">
+<p-toast></p-toast>
+<div class="perfil" *ngIf="isAuthorizedUser()">
     <div class="perfil-content container">
         <div class="avatar-upload">
             <div class="avatar">
@@ -14,6 +15,10 @@
          <div class="content-edit" [ngClass]="{'elemento-escondido': mostrarElemento}">
             <a routerLink="/perfil">Atualizar perfil!</a>
         </div>
+    </div>
+    <div [ngClass]="{'elemento-escondido': mostrarElemento}" class="alert-container" style="text-align: center;">
+      <i class="pi pi-info-circle"></i>
+      <span style="font-weight: bolder;">Atualize seu perfil para se candidatar às vagas!</span>
     </div>
 </div>
 <div>

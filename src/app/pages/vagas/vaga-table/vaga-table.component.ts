@@ -3,6 +3,13 @@ import { VagaService } from '../../../../services/vaga/vaga.service';
 import { HttpParams } from '@angular/common/http';
 import { IVaga } from '../../../interface/IVaga';
 import { LoginService } from '../../../../services/login/login.service';
+import { ICandidatarRequest } from '../../../interface/ICandidatarRequest';
+import { StatusCandidatoEnum } from '../../../enums/StatusCandidatoEnum';
+import { IPerfilCandidato } from '../../../interface/IPerfilCandidato';
+import { PerfilControllerService } from '../../../controller/perfil-controller/perfil-controller.service';
+import { CandidatarService } from '../../../../services/candidatar/candidatar.service';
+import { Router } from '@angular/router';
+import { UtilsService } from '../../../../services/utils/utils.service';
 
 @Component({
   selector: 'app-vaga-table',
@@ -11,17 +18,31 @@ import { LoginService } from '../../../../services/login/login.service';
 })
 export class VagaTableComponent {
   visible: boolean = false;
+  candidato!: ICandidatarRequest;
   vagas!: IVaga[];
+  vagaSelecionadaId: number | null = null;
   requestOptions:any;
   role: string | null = null;
+  perfil!: IPerfilCandidato | null;
   constructor(
               private vagaService: VagaService,
-              private loginService: LoginService) {}
+    private loginService: LoginService,
+              private router: Router,
+              private candidatarService: CandidatarService,
+              private perfilControllerService: PerfilControllerService,
+              private utils:UtilsService
+            ) {
+              this.perfil = null;
+            }
 
   ngOnInit() {
-    this.loginService.role$.subscribe((role) => {
-      this.role = role;
-    });
+      this.loginService.role$.subscribe((role) => {
+        this.role = role;
+      });
+
+      this.perfilControllerService.perfil$.subscribe((perfil) => {
+        this.perfil = perfil;
+      });
 
       let params = new HttpParams();
       params = params.append('pagina', 0);
@@ -30,61 +51,56 @@ export class VagaTableComponent {
       params = params.append('ordenarPor', "id");
       this.requestOptions = { params: params };
       const customFilterName = 'custom-equals';
-
-      // this.filterService.register(customFilterName, (value:any, filter:any): boolean => {
-      //     if (filter === undefined || filter === null || filter.trim() === '') {
-      //         return true;
-      //     }
-
-      //     if (value === undefined || value === null) {
-      //         return false;
-      //     }
-
-      //     return value.toString() === filter.toString();
-      // });
-
-      // this.cols = [
-      //     { field: 'nome', header: 'Nome' },
-      //     { field: 'dosagem', header: 'Dosagem' },
-      // ];
-
-      // this.matchModeOptions = [
-      //     { label: 'Igual', value: customFilterName },
-      //     { label: 'Começa com', value: FilterMatchMode.STARTS_WITH },
-      //     { label: 'Contém', value: FilterMatchMode.CONTAINS }
-      // ];
-
-       //this.carService.getCarsMedium().then((data:any) => (this.medicamentos = data));
-
-    this.buscarUsuarios();
+    this.buscarVagas();
   }
 
-  buscarUsuarios(){
+  createPayloadLogin()
+  {
+    return {
+      idVaga: this.vagaSelecionadaId,
+      idPerfilCandidato: this.perfil?.id,
+      statusCandidato: StatusCandidatoEnum.CANDIDATO
+   }
+  }
+
+  buscarVagas(){
     this.vagaService.buscarTodasVagas(this.requestOptions).subscribe((data:any) => this.vagas= data);
   }
 
-  editar(){
-    alert("Editar")
-  }
-  excluir(){
-    alert("Excluir")
-  }
-
-  modal(){
-    alert("Chamou")
-  }
-
-  
   isAuthorized(): boolean {
     return this.role !== undefined && this.role !== null && this.role === 'ADMIN';
   }
 
-  showDialog() {
-      this.visible = true;
+  isAuthorizedUser(): boolean {
+    return this.role !== undefined && this.role !== null && this.role === 'USER';
+  }
+
+  showDialog(id:number) {
+    this.visible = true;
+     this.vagaSelecionadaId = id;
   }
 
   closeDialog() {
-      this.visible = false;
+    this.visible = false;
   }
-  
+
+  candidatar() {
+    const payload = this.createPayloadLogin();
+      this.candidatarService.candidatar(payload).subscribe((res) => {
+        console.log(res);
+        this.utils.showSuccess("Sucesso!");
+        this.closeDialog();
+    })
+  }
+
+  buscarVagaPorId(id: number) {
+    this.vagaService.buscarVagaPorId(id).subscribe((res) => {
+      this.vagas = res;
+    })
+  }
+
+  navigateAvaliacao(id: number) {
+    this.router.navigate(['avaliacao/candidato-avaliacao/', id]);
+    console.log("Vaga id ",id)
+  }
 }
