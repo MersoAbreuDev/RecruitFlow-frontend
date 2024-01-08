@@ -1,29 +1,38 @@
 <p-toast></p-toast>
 <div class="vacancie">
-    <div class="list-vacancie container" *ngFor="let vaga of vagas">
-        <div class="item">
-            <div class="item-title">
-                <h2>{{vaga.titulo}}<i *ngIf=" isAuthorized()" style="float: right;cursor: pointer;" class="pi pi-pencil"></i></h2>
-            </div>
-            <div class="item-description">
-                <h3>Especificações</h3>
-                <p>
-                    - {{vaga.descricao}} <br>
-                </p>
-            </div>
-            <div style="width: 100%;">
-                <div class="item-status">
-                    <i class="pi pi-check active"></i>
-                    <i *ngIf="vaga.status != 'ATIVA'? true : false" class="pi pi-ban inative"></i>
-                    <p>{{vaga.status}}</p>
+    <div *ngIf="vagas; then hasVagas else notVagas"></div>
+    <ng-template #hasVagas>
+        <div class="list-vacancie container" *ngFor="let vaga of vagas">
+            <div class="item">
+                <div class="item-title">
+                    <h2>{{vaga.titulo}}<i *ngIf=" isAuthorized()" style="float: right;cursor: pointer;" class="pi pi-pencil"></i></h2>
                 </div>
-                <div class="item-button">
-                    <button pButton pRipple [disabled]="perfil === null" *ngIf="isAuthorizedUser()" (click)="showDialog(vaga.id)" label="Candidatar" class="p-button-success"></button>
-                    <button *ngIf="isAuthorized()" pButton pRipple label="Ver" (click)="navigateAvaliacao(vaga.id)"><i class="pi pi-eye"></i></button>
+                <div class="item-description">
+                    <h3>Especificações</h3>
+                    <p>
+                        - {{vaga.descricao}} <br>
+                    </p>
+                </div>
+                <div style="width: 100%;">
+                    <div class="item-status">
+                        <i class="pi pi-check active"></i>
+                        <i *ngIf="vaga.status != 'ATIVA'? true : false" class="pi pi-ban inative"></i>
+                        <p>{{vaga.status}}</p>
+                    </div>
+                    <div class="item-button">
+                        <button pButton pRipple [disabled]="perfil === null" *ngIf="isAuthorizedUser()" (click)="showDialog(vaga.id)" label="Candidatar" class="p-button-success"></button>
+                        <button *ngIf="isAuthorized()" pButton pRipple label="Ver" (click)="navigateAvaliacao(vaga.id)"><i class="pi pi-eye"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </ng-template>
+    <ng-template #notVagas>
+        <div class="not-vagas">
+            <p>Não há vagas disponíveis.</p>
+        </div>
+    </ng-template>
+    
 </div>
 <p-toast></p-toast>
 <p-dialog header="Atenção" [(visible)]="visible" [modal]="true" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '18vw' }" [draggable]="false" [resizable]="false" [style]="{ width: '18vw' }" [draggable]="false" [resizable]="false">
@@ -46,5 +55,7 @@
         </div>
     </div>
 </p-dialog>
+
+
 
 

@@ -127,3 +127,20 @@
     float: right;
     text-align: right;
 }
+
+.not-vagas{
+    width: 370px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.not-vagas p{
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: #f97316;
+    border: 1px solid #f97316;
+}

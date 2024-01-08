@@ -1,4 +1,7 @@
 <div class="list-user">
+    <div class="nav">
+        <button pButton routerLink="/home" pRipple class="p-button-rounded mr-2" ><i class="pi pi-angle-left"></i> Voltar</button>
+    </div>
     <p-table [value]="candidatos" [tableStyle]="{ 'min-width': '50rem' }" class="table">
         <ng-template pTemplate="header">
             <tr>
@@ -11,7 +14,7 @@
                 <td>{{canditatos.perfilCandidato.nome}}</td>
                 <td>
                     <button style="margin-right:5px ;" pButton pRipple icon="pi pi-eye" (click)="perfilView(canditatos.idCandidato)" class="p-button-rounded mr-2" ></button>
-                    <button pButton pRipple icon="pi pi-comments" class="p-button-rounded p-button-help ml-2" ></button>
+                    <button pButton pRipple icon="pi pi-comments" class="p-button-rounded p-button-help ml-2" (click)="showDialogAvaliacao()"></button>
                 </td>
             </tr>
         </ng-template>
@@ -91,4 +94,27 @@
       </div>
     </div>
   </div>
+</p-dialog>
+
+<p-dialog header="Avaliar candidato" [(visible)]="visibleAvaliacao" [modal]="true" [style]="{ width: '20vw' }" [draggable]="false">
+    <div class="card flex justify-content-center">
+        <form [formGroup]="form">
+            <div class="input-group">
+                <label for="avaliacao">Avaliação</label>
+                <p-dropdown formControlName="avaliacao" [style]="{'width':'100%'}" [options]="status" id="avaliacao" optionLabel="name" placeholder="Selecione a avaliação"></p-dropdown>
+            </div>
+            <div class="input-group">
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" pInputTextarea [autoResize]="true" formControlName="mensagem" placeholder="Escreva o feedback"></textarea>
+            </div>
+            <div class="input-button">
+                <div class="button-left">
+                    <p-button label="Cancelar" (click)="closeDialogAvaliacao()" severity="danger"></p-button>
+                </div>
+                <div class="button-right">
+                    <p-button label="Enviar" severity="success"></p-button>
+                </div>
+            </div>
+        </form>
+    </div>
 </p-dialog>

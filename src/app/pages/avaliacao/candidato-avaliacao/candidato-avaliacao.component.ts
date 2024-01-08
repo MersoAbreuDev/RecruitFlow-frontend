@@ -3,6 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { AvaliarService } from '../../../../services/avaliar/avaliar.service';
 import { IPerfilCandidato } from '../../../interface/IPerfilCandidato';
 import { PerfilCandidatoService } from '../../../../services/perfil-candidato/perfil-candidato.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+interface Avaliacao {
+  status: string;
+  code: string;
+}
 
 @Component({
   selector: 'app-candidato-avaliacao',
@@ -13,10 +19,14 @@ export class CandidatoAvaliacaoComponent {
   candidatos!:any[];
   perfil!: IPerfilCandidato;
   visible: boolean = false;
+  visibleAvaliacao: boolean = false;
+  status: Avaliacao[] | undefined;
+  form!: FormGroup;
 
   constructor(private route: ActivatedRoute,
               private avaliarService: AvaliarService,
-              private perfilCandidato: PerfilCandidatoService) { }
+              private perfilCandidato: PerfilCandidatoService,
+              private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -24,6 +34,15 @@ export class CandidatoAvaliacaoComponent {
       this.buscarCandidatosPorIdVaga(id);
     });
 
+    this.status = [
+        { status: 'CLASSIFICADO', code: 'NY' },
+        { status: 'DESCLASSIFICADO', code: 'NY' }
+    ];
+
+    this.form = this.fb.group({
+      mensagem:['', [Validators.required]],
+      avaliacao: new FormControl<Avaliacao | null>(null),
+    });
   }
 
   buscarCandidatosPorIdVaga(id: number) {
@@ -43,5 +62,13 @@ export class CandidatoAvaliacaoComponent {
 
    showDialog() {
     this.visible = true;
+  }
+
+  showDialogAvaliacao() {
+      this.visibleAvaliacao = true;
+  }
+
+  closeDialogAvaliacao() {
+      this.visibleAvaliacao = false;
   }
 }

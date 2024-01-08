@@ -5,6 +5,7 @@ import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { CandidatoAvaliacaoComponent } from './candidato-avaliacao/candidato-avaliacao.component';
 import { PrimengModule } from '../../../shared/primeng/primeng.module';
 import { MessageService } from 'primeng/api';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -12,7 +13,9 @@ import { MessageService } from 'primeng/api';
   imports: [
     CommonModule,
     AvaliacaoRoutingModule,
-    PrimengModule
+    PrimengModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
     providers:[MessageService],
 })
