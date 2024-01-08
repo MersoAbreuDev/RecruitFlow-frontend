@@ -27,7 +27,7 @@ export class PerfilCandidatoViewComponent {
   }
 
   buscarPorId(){
-    this.perfilCandidatoService.buscarPerfilPorId(this.id).subscribe((res)=>{
+    this.perfilCandidatoService.buscarPerfilPorIdUsuario(this.id).subscribe((res)=>{
       this.perfil = res;
       this.imagemSelecionada = res.imagem;
     })

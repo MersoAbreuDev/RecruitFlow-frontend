@@ -68,8 +68,8 @@ export class PerfilCandidatoService {
     );
   }
 
-    buscarPorId(id:number): Observable<any> {
-    return this.http.get(`${SERVER_URI}perfil-candidatos/buscar-candidato/${id}`)
+    buscarPerfilPorIdUsuario(id:number): Observable<any> {
+    return this.http.get(`${SERVER_URI}perfil-candidatos/buscar/${id}`)
     .pipe(map((data: any) => {
       this.currentUserSubject.next(data);
       return data;

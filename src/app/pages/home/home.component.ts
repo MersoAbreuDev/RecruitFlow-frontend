@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit{
     }
 
   buscarPorId(){
-    this.perfilCandidatoService.buscarPerfilPorId(this.id).subscribe((res)=>{
+    this.perfilCandidatoService.buscarPerfilPorIdUsuario(this.id).subscribe((res)=>{
       this.perfil = res;
       this.perfilController.setPerfil(this.perfil);
       if (this.perfil == null || Object.keys(this.perfil).length === 0) {
